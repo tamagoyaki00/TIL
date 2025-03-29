@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>イベントハンドラーについて</title>
+    <style>
+        button {
+          margin: 10px;
+        }
+      </style>
+</head>
+<body>
+    <button>色を変更</button>
+
+    <script>
+        const btn = document.querySelector("button");
+
+        function random(number) {
+        return Math.floor(Math.random() * (number + 1));
+        }
+
+        function changeBackground() {
+        const rndCol = `rgb(${random(255)} ${random(255)} ${random(255)})`;
+        document.body.style.backgroundColor = rndCol;
+        }
+
+        btn.addEventListener("click", changeBackground);
+    </script>
+    
+</body>
+</html>

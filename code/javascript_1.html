@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello</title>
+    <style>
+        .container {
+            display: flex;
+            gap: 0.5rem;
+            flex-direction: column;
+        }
+
+        button {
+            width: 100px;
+        }
+        
+        div.parent {
+            border: 1px solid black;
+            padding: 5px;
+            width: 100px;
+            height: 100px;
+        }
+
+        div.child {
+            border: 1px solid red;
+            margin: 10px;
+            padding: 5px;
+            width: 80px;
+            height: 60px;
+            box-sizing: border-box;
+        }
+
+     </style>
+</head>
+<body>
+    <div class="container">
+        <div class="parent">親</div>
+        <button id="add-child" type="button">子を追加</button>   
+    <button id="remove-child" type="button">子を除去</button>
+    </div>
+   
+
+    <script type="text/javascript">
+        // document.querySelectorでdivとbuttonにアクセスする
+        const parent = document.body.querySelector(".parent");
+        const addChild = document.body.querySelector("#add-child");
+        // ボタンのクリックを待ち受けする
+        addChild.addEventListener("click", () => {
+            // テキストノード「親」のほかにまだ子ノードがない場合のみ、子ノードを追加
+            if (parent.childNodes.length > 1) {
+                return;
+            }
+            // document.createElementで要素を作成
+            const child = document.createElement("div");
+            child.classList.add("child");
+            child.textContent = "子";
+            // appendChildで子要素を追加
+            parent.appendChild(child);
+        });
+
+        const removeChild = document.body.querySelector("#remove-child");
+        removeChild.addEventListener("click", () => {
+            const child = document.body.querySelector(".child");
+            // removeChildで子要素を除去
+            parent.removeChild(child);
+        });
+    </script>
+   
+</body>
+</html>
