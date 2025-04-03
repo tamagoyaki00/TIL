@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>テスト１</title>
+  </head>
+  <body>
+
+    <section>
+
+
+
+    </section>
+    <script>
+        // Q定された配列 (names) から指定された段落 (para) に
+        // ランダムな名前を出力する単純な関数 chooseName() を作成
+      const names = ["Chris","Li Kang","Anne","Francesca","Mustafa","Tina","Bert","Jada",];
+      const para = document.createElement("p");
+
+      // Add your code here
+        function chooseName () {
+           const randomName = Math.floor(Math.random() * names.length);
+            return names[randomName];
+        }
+        para.textContent = chooseName();
+        const section = document.querySelector("section")
+
+      section.innerHTML = " ";
+
+      section.appendChild(para);
+    </script>
+  </body>
+</html>
