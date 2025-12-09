@@ -1,0 +1,11 @@
+.button {
+    gont-size: 20px;
+    padding: 10px 20px;
+    background: white;
+    width: 100%;
+    margin: 10px 0;
+
+    .buttonInner {
+        color: black
+    }
+}
