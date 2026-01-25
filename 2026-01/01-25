@@ -1,0 +1,89 @@
+## 学習記録
+
+## ログイン画面の実装
+コントローラーに以下を記述。（Rubyでいうルーティングを設定）
+
+これでlogin.htmlのviewが返される。
+
+```ruby
+@GetMapping("/login")
+public String view() {
+    return "login";
+}
+```
+
+他にも@PostMappingなどそれぞれのHTTPリクエストのアノテーションがある。
+
+フォームに入力する値の定義
+
+```ruby
+package com.example.demo.form;
+
+import lombok.Data;
+
+@Data
+public class LoginForm {
+	private String loginId;
+	private String password;
+
+}
+```
+
+`@Data` を付けると、以下の Lombok アノテーションがすべて自動生成されます。
+
+| アノテーション | 役割 |
+| --- | --- |
+| `@Getter` | 全フィールドの getter を生成 |
+| `@Setter` | 全フィールドの setter を生成 |
+| `@ToString` | toString() を生成 |
+| `@EqualsAndHashCode` | equals(), hashCode() を生成 |
+| `@RequiredArgsConstructor` | `final` フィールドのコンストラクタを生成 |
+
+viewの部分
+
+```ruby
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ログイン画面</title>
+</head>
+
+<body>
+	<h1>ログイン画面</h1>
+	<form th:action="@{/login}" method="post" th:object="${loginForm}">
+	<div>
+		<label>ログインID</label>
+		<input type="text" th:field="*{loginId}">
+	</div>
+	<div>
+		<label>パスワード</label>
+		<input type="password" th:field="*{password}">
+	</div>
+	<div>
+		<input type="submit" value="ログイン">
+	</div>
+	</form>
+</body>
+
+</html>
+```
+
+thymeleafの
+
+`@`はURLを意味する
+
+`*`は「今のフォームオブジェクト（th:object で指定したもの）を基準に相対参照する」式
+
+Rubyの以下と同じ。ERBに慣れすぎて、HTML見慣れないが、理解はしやすい。
+```
+<%= form_with url: "/login", method: :post, model: @user do |f| %>
+  <%= f.text_field :login_id %>
+  <%= f.password_field :password %>
+<% end %>
+
+```
+
+今回は簡易的なログイン画面を実装しました。Springbootにはログイン機能があるみたいだがDBの接続などは自分でしないといけない。Youtubeで実装方法解説してるものがあったのでやってみよう。
+https://spring.pleiades.io/guides/gs/securing-web
